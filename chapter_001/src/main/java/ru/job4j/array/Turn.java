@@ -6,7 +6,6 @@ public class Turn {
             int tmp = array[i];
             array[i] = array[array.length - i - 1];
             array[array.length - i - 1] = tmp;
-
         }
         return array;
     }
