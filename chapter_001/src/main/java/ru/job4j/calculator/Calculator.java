@@ -6,8 +6,14 @@ package ru.job4j.calculator;
  * @since 18.10.2019
  * @version 1
  */
+
 public class Calculator {
-    public static void add(double first, double second) {
+    /**
+     * Метод add-сложение, div-деление, multiply-умножение, subtract-вычитание
+     * @param first первое число
+     * @param second второе число
+     */
+        public static void add(double first, double second) {
         double result = first + second;
         System.out.println(first + " + " + second + " = " + result);
     }
