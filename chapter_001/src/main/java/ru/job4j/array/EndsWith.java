@@ -6,7 +6,7 @@ public class EndsWith {
         int k = 0;
         for (int i = post.length - 1; i >= 0; i--) {
             k++;
-            if (post[i] != word[word.length-k]) {
+            if (post[i] != word[word.length - k]) {
                 result = false;
                 break;
             }

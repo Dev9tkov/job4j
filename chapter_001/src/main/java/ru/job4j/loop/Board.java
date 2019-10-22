@@ -6,8 +6,7 @@ public class Board {
             for (int cell = 0; cell < width; cell++) {
                 if ((row + cell) % 2 == 0) {
                     System.out.print("X");
-                }
-                else {
+                } else {
                     System.out.print(" ");
                 }
             }
