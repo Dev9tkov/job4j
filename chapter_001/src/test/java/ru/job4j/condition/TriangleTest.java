@@ -1,5 +1,4 @@
 package ru.job4j.condition;
-
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -7,12 +6,13 @@ import static org.junit.Assert.assertThat;
 public class TriangleTest {
     @Test
     public void whenExist() {
-        boolean result = Triangle.exist(2.0, 2.0, 2.0);
-        assertThat(result, is(true));
-    }
-    @Test
-    public void whenNotExist() {
-        boolean result = Triangle.exist(3.0, 2.0, 8.0);
-        assertThat(result, is(false));
+        Point n = new Point(2, 6);
+        Point o = new Point(0, 3);
+        Point k = new Point(1, 4);
+
+        Triangle tr = new Triangle(n, o, k);
+        double rsl = tr.area();
+        assertThat(rsl, is(0.5));
     }
 }
+
