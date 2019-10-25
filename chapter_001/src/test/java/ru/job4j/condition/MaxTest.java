@@ -7,18 +7,16 @@ import static org.junit.Assert.assertThat;
 public class MaxTest {
     @Test
     public void whenMax1To2Then2() {
-        int result = Max.max(1, 2);
-        assertThat(result, is(2));
+        Max n = new Max();
+        Max k = new Max();
+        Max l = new Max();
+        int resultn = n.max(1, 4);
+        int resultk = k.max(1, 4, 18);
+        int resultl = l.max(15, 21, 18, 14);
+        assertThat(resultn, is(4));
+        assertThat(resultk, is(18));
+        assertThat(resultl, is(21));
     }
-    @Test
-    public void whenMax3To1Then1() {
-        int result = Max.max(3, 1);
-        assertThat(result, is(3));
-    }
-    @Test
-    public void whenMax2To2Then2() {
-        int result = Max.max(2, 2);
-        assertThat(result, is(2));
-    }
-
 }
+
+
