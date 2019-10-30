@@ -65,11 +65,13 @@ public class TrackerTest {
         Item first = new Item("test1");
         Item second = new Item("test2");
         Item third = new Item("test3");
+        Item fourth = new Item("test2");
         tracker.add(first);
         tracker.add(second);
         tracker.add(third);
-        Item[] result = tracker.findByName("test1");
-        Item[] expect = {first};
+        tracker.add(fourth);
+        Item[] result = tracker.findByName("test2");
+        Item[] expect = {second, fourth};
         assertThat(result, is(expect));
     }
 
@@ -84,5 +86,4 @@ public class TrackerTest {
         tracker.add(third);
         assertThat(tracker.findById(third.getId()).getName(), is("test3"));
     }
-
 }
