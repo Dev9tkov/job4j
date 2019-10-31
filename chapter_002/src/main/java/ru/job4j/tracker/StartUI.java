@@ -17,7 +17,9 @@ public class StartUI {
                 tracker.add(item);
             } else if (select == 1) {
                 System.out.println("=== all Item ====");
-                System.out.println(tracker.findAll());
+                for (int i = 0; i < tracker.findAll().length; i++) {
+                    System.out.println(tracker.findAll()[i]);
+                }
             } else if (select == 2) {
                 System.out.println("=== Replace Item ====");
                 System.out.print("Enter Id: ");
@@ -26,21 +28,30 @@ public class StartUI {
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.replace(id, item);
+                System.out.println("Item with Id " + id + "replace by Item " + name);
             } else if (select == 3) {
                 System.out.println("=== Delete Item ====");
                 System.out.print("Enter Id: ");
                 String id = scanner.nextLine();
-                tracker.delete(id);
+                System.out.println("Item deleted? - "+ tracker.delete(id));
             } else if (select == 4) {
                 System.out.println("=== Find item by Id ====");
                 System.out.print("Enter Id: ");
                 String id = scanner.nextLine();
-                System.out.println(tracker.findById(id));
+                if (tracker.findById(id) != null) {
+                    System.out.println(tracker.findById(id));
+                } else {
+                    System.out.println("This Id does not exist");
+                }
+
             } else if (select == 5) {
                 System.out.println("=== Find items by Name ====");
                 System.out.print("Enter key: ");
                 String key = scanner.nextLine();
-                System.out.println(tracker.findByName(key));
+                for (int i = 0; i < tracker.findByName(key).length; i++) {
+                    System.out.println(tracker.findByName(key)[i]);
+                }
+
             } else if (select == 6) {
                 System.out.print("=== Exit Program ====");
                 run = false;
