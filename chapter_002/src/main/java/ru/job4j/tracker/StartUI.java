@@ -21,14 +21,20 @@ public class StartUI {
      * @param tracker
      */
     public static void replaceItem(Input input, Tracker tracker) {
-        System.out.println("=== Replace Item ====");
-        System.out.print("Enter Id: ");
-        String id = input.askStr("");
-        System.out.print("Enter item: ");
-        String name = input.askStr("");
+        System.out.println(" === Update item ====");
+        String id = input.askStr("Enter id:");
+        String name = input.askStr("Enter a new name of item: ");
         Item item = new Item(name);
+        item.setId(id);
         tracker.replace(id, item);
-        System.out.println("Item with Id " + id + "replace by Item " + name);
+//        System.out.println("=== Replace Item ====");
+//        System.out.print("Enter Id: ");
+//        String id = input.askStr("");
+//        System.out.print("Enter item: ");
+//        String name = input.askStr("");
+//        Item item = new Item(name);
+//        tracker.replace(id, item);
+//        System.out.println("Item with Id " + id + "replace by Item " + name);
     }
 
     /**
@@ -38,9 +44,9 @@ public class StartUI {
      */
     public static void deteleItem(Input input, Tracker tracker) {
         System.out.println("=== Delete Item ====");
-        System.out.print("Enter Id: ");
+        System.out.println("Enter Id: ");
         String id = input.askStr("");
-        System.out.println("Item deleted? - "+ tracker.delete(id));
+        System.out.println("Item deleted? - " + tracker.delete(id));
     }
 
     /**
