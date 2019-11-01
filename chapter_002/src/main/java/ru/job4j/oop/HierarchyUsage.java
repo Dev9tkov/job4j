@@ -10,7 +10,6 @@ public class HierarchyUsage {
         //Object bicycle = new Bicycle();
         //Car cb = (Car) bicycle;
         System.out.println(new Car());
-        System.out.println(new Bicycle());
         System.out.println(new Object());
     }
 }

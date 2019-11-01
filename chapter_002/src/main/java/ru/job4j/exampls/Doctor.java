@@ -1,4 +1,6 @@
-package ru.job4j.tracker;
+package ru.job4j.exampls;
+
+import ru.job4j.exampls.Profession;
 
 public class Doctor extends Profession {
 

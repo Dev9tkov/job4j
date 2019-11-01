@@ -1,4 +1,6 @@
-package ru.job4j.tracker;
+package ru.job4j.exampls;
+
+import ru.job4j.exampls.Doctor;
 
 public class Surgeon extends Doctor {
 
