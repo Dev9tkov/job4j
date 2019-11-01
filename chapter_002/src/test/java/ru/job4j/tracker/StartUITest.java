@@ -31,15 +31,16 @@ public class StartUITest {
     @Test
     public void whenDeleteItem() {
         Tracker tracker = new Tracker();
-        Item item = new Item("new item");
+        Item item = new Item(null);
         tracker.add(item);
         String[] answers = {
                 item.getId(),
-                "This Id does not exist"
+                "null"
         };
         StartUI.deleteItem(new StubInput(answers), tracker);
-        StartUI.findItemById(new StubInput(answers), tracker);
+        Item delete = null;
         Item deleted = tracker.findById(item.getId());
-        assertThat(deleted.getName(), is("This Id does not exist"));
+        assertThat(deleted, is(delete));
+
     }
 }
