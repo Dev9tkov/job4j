@@ -9,11 +9,8 @@ public class FindByNameAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("Enter key: ");
         String key = input.askStr("");
-        //Item[] result = tracker.findByName(key);
         for (Item item : tracker.findByName(key)) {
             System.out.println(String.format("%s %s", item.getId(), item.getName()));
-//        for (int i = 0; i < result.length; i++) {
-//            System.out.println(result[i]);
         }
         return true;
     }
