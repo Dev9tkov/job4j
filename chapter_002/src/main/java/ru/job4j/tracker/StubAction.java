@@ -1,11 +1,19 @@
 package ru.job4j.tracker;
 
 public class StubAction implements UserAction {
+
     private boolean call = false;
+
     @Override
-    public String name() {
-        return "Stub action";
+    public int key() {
+        return this.key();
     }
+
+    @Override
+    public String info() {
+        return "Stub info";
+    }
+
     @Override
     public boolean execute(Input input, Tracker tracker) {
         call = true;

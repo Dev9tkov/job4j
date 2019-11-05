@@ -1,10 +1,11 @@
 package ru.job4j.tracker;
 
-public class FindByNameAction implements UserAction {
-    @Override
-    public String name() {
-        return "=== Find items by Name ====";
+public class FindByNameAction extends BaseAction {
+
+    public FindByNameAction(int key, String name) {
+        super(key, name);
     }
+
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("Enter key: ");
