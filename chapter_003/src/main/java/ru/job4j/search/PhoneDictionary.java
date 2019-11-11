@@ -30,12 +30,4 @@ public class PhoneDictionary {
         }
         return result;
     }
-
-    public static void main(String[] args) {
-        PhoneDictionary phones = new PhoneDictionary();
-        phones.add(
-                new Person("Petr", "Arsentev", "534872", "Bryansk")
-        );
-        List<Person> persons = phones.find("Petr");
-    }
 }
