@@ -22,20 +22,22 @@ public class ConvertList2Array {
     public int[][] toArray(List<Integer> list, int rows) {
         int cells = ((list.size() + (rows - 1)) / rows);
         int[][] array = new int[rows][cells];
-        int[] arraylist = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            arraylist[i] = list.get(i);
-        }
-        for (int i = 0; i < cells; i++) {
-            for (int j = 0; j < rows; j++) {
-                if(i * rows + j < arraylist.length) {
-                    array[i][j] = arraylist[i * rows + j ];
-                } else {
-                    array[i][j] = 0;
-                }
+        int i = 0;
+        int j = 0;
+            for (Integer volume : list) {
+                    array[i][j++] = volume;
+                    if (j == cells) {
+                        i++;
+                        j = 0;
+                    }
             }
-        }
         return array;
     }
 }
+
+
+
+
+
+
 
