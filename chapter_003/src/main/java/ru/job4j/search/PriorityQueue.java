@@ -21,12 +21,17 @@ public class PriorityQueue {
         if (tasks.isEmpty()) {
             tasks.add(0, task);
         }
+        int element = -1;
         for(Task volume : tasks) {
             if (volume.getPriority() > task.getPriority()) {
-            int element = tasks.indexOf(volume);
-            tasks.add(element, task);
+            element = tasks.indexOf(volume);
             break;
             }
+        }
+        if(element != -1) {
+            tasks.add(element, task);
+        } else {
+            tasks.add(task);
         }
     }
 
