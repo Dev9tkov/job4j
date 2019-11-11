@@ -16,14 +16,11 @@ public class Machine {
         int[] rsl = new int[100];
         int size = 0;
         int i = 0;
-        int k = 0;
         int raznica = money - price;
         while (raznica != 0) {
             if (raznica >= coins[i]) {
                 raznica -= coins[i];
-                rsl[k] = coins[i];
-                k++;
-                size++;
+                rsl[size++] = coins[i];
             } else {
                 i++;
             }
