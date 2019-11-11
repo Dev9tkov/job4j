@@ -28,7 +28,7 @@ public class ConvertList2Array {
         }
         for (int i = 0; i < cells; i++) {
             for (int j = 0; j < rows; j++) {
-                if((i * rows)+ j < arraylist.length) {
+                if(i * rows + j < arraylist.length) {
                     array[i][j] = arraylist[i * rows + j ];
                 } else {
                     array[i][j] = 0;
