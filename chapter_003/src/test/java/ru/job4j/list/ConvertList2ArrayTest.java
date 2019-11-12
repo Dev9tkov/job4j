@@ -1,7 +1,11 @@
 package ru.job4j.list;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -18,5 +22,17 @@ public class ConvertList2ArrayTest {
         };
         assertThat(result, is(expect));
     }
+
+    @Test
+    public void convertInteger() {
+        ConvertList2Array convertint = new ConvertList2Array();
+        List<int[]> list = new ArrayList<>();
+        list.add(new int[]{1, 2, 3});
+        list.add(new int[]{4, 5, 6, 7});
+        List<Integer> result = convertint.convert(list);
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        assertThat(result, is(expected));
+    }
+
 }
 
