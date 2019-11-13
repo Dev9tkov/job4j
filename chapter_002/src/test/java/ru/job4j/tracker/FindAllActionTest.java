@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.StringJoiner;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,7 +19,7 @@ public class FindAllActionTest {
         Tracker tracker = new Tracker();
         Item item = new Item("fix bug");
         tracker.add(item);
-        FindAllAction act = new FindAllAction();
+        FindAllAction act = new FindAllAction(1, "fix bug");
         act.execute(new StubInput(new String[] {}), tracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add(item.getId() + " " + item.getName())
