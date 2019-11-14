@@ -6,7 +6,6 @@ public class FindAllAction extends BaseAction {
         super(key, name);
     }
 
-
     @Override
     public boolean execute(Input input, Tracker tracker) {
         for (Item item : tracker.findAll()) {

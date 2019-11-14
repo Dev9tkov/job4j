@@ -16,8 +16,8 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        ArrayList<UserAction> actions = new ArrayList<>();
-        actions.add(new CreateAction(0, "Create Item"));
+        ArrayList<UserAction> actions =new ArrayList<>();
+        actions.add(action);
         new StartUI().init(input, new Tracker(), actions);
         assertThat(action.isCall(), is(true));
     }
@@ -31,10 +31,12 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new ArrayList<>());
+        ArrayList<UserAction> actions =new ArrayList<>();
+        actions.add(action);
+        new StartUI().init(input, new Tracker(),  actions);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Menu.")
-                .add("0. Stub action")
+                .add("Stub info")
                 .toString();
         assertThat(new String(out.toByteArray()), is(expect));
         System.setOut(def);
