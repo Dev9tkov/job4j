@@ -14,7 +14,7 @@ public class PointTest {
     }
 
     @Test
-    public void whenA1B2С3Then5() {
+    public void whena1b2c3then5() {
         Point a = new Point(0, -3, 3);
         Point b = new Point(3, 1, 3);
         double result = a.distance(b);

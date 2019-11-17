@@ -16,7 +16,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        ArrayList<UserAction> actions =new ArrayList<>();
+        ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(action);
         new StartUI().init(input, new Tracker(), actions);
         assertThat(action.isCall(), is(true));
@@ -31,7 +31,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        ArrayList<UserAction> actions =new ArrayList<>();
+        ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(action);
         new StartUI().init(input, new Tracker(),  actions);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())

@@ -14,7 +14,7 @@ import java.util.List;
 public class UserConvert {
     public HashMap<Integer, User> process(List<User> list) {
         HashMap<Integer, User> result = new HashMap<>();
-        for(User volume : list) {
+        for (User volume : list) {
             result.put(volume.getId(), volume);
         }
         return result;

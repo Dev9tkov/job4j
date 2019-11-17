@@ -25,7 +25,7 @@ public class SortUser {
      * @param list
      * @return
      */
-    public List<Usernew> sortNameLength (List<Usernew> list) {
+    public List<Usernew> sortNameLength(List<Usernew> list) {
         list.sort(new Comparator<Usernew>() {
             @Override
             public int compare(Usernew o1, Usernew o2) {
@@ -41,7 +41,7 @@ public class SortUser {
      * @param list
      * @return
      */
-    public List<Usernew> sortByAllFields (List<Usernew>list) {
+    public List<Usernew> sortByAllFields(List<Usernew> list) {
         list.sort(new Comparator<Usernew>() {
             @Override
             public int compare(Usernew o1, Usernew o2) {

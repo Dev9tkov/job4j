@@ -16,7 +16,7 @@ public class StartUI {
 
         private void showMenu(ArrayList<UserAction> actions) {
             System.out.println("Menu.");
-            for(UserAction value : actions) {
+            for (UserAction value : actions) {
                 System.out.println(value.info());
             }
         }

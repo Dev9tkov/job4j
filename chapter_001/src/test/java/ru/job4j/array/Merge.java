@@ -13,7 +13,8 @@ public class Merge {
             if (left[i] < right[j]) {
                 rsl[m] = left[i];
                 i++;
-            } else { rsl[m] = right[j];
+            } else {
+                rsl[m] = right[j];
                 j++;
             }
             m++;

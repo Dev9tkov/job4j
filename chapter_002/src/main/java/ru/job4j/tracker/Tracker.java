@@ -26,7 +26,7 @@ public class Tracker {
 
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for(int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 items.set(i, item);
                 result = true;
@@ -38,7 +38,7 @@ public class Tracker {
 
     public boolean delete(String id) {
         boolean result = false;
-        for(Item value : items) {
+        for (Item value : items) {
             if (value.getId().equals(id)) {
                 items.remove(value);
                 result = true;
@@ -54,7 +54,7 @@ public class Tracker {
 
     public ArrayList<Item> findByName(String key) {
         ArrayList<Item> result = new ArrayList<>();
-        for(Item value : items) {
+        for (Item value : items) {
             if (value != null && value.getName().equals(key)) {
                 result.add(value);
             }
@@ -65,7 +65,7 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (Item value : items) {
-            if(value != null && value.getId().equals(id)) {
+            if (value != null && value.getId().equals(id)) {
                 result = value;
                 break;
             }

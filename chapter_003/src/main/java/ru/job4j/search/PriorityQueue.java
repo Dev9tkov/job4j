@@ -22,7 +22,7 @@ public class PriorityQueue {
             tasks.add(0, task);
         }
         int element = 0;
-        for(Task volume : tasks) {
+        for (Task volume : tasks) {
             if (volume.getPriority() > task.getPriority()) {
                 element = tasks.indexOf(volume);
                 break;

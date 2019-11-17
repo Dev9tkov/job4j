@@ -40,7 +40,7 @@ public class ConvertList2Array {
      * @param list входящий
      * @return результирующий list
      */
-    public List<Integer> convert (List<int[]> list) {
+    public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
         for (int[] volume : list) {
             for (int j : volume) {

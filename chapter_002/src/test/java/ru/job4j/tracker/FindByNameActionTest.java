@@ -27,7 +27,7 @@ public class FindByNameActionTest {
         tracker.findByName("test1");
         FindByNameAction act = new FindByNameAction(5, "test1");
         act.execute(new StubInput(new String[] {"test1", "test3"}), tracker);
-        String expect = new StringJoiner(System.lineSeparator(),"", System.lineSeparator())
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Enter key: ")
                 .add(test1.getId() + " " + test1.getName())
                 .add(test3.getId() + " " + test3.getName())
