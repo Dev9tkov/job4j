@@ -30,11 +30,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(passport, user.passport);
+        return name.equals(user.name) &&
+                passport.equals(user.passport);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(passport);
+        return Objects.hash(name, passport);
     }
 }

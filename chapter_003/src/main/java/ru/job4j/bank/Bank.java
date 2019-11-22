@@ -10,11 +10,12 @@ import java.util.*;
  * @since 18.11.2019
  */
 public class Bank {
+
     private Map<User, List<Account>> spisok = new HashMap<>();
 
     /**
      * Добавление user
-     * .putIfAbsent добавит пару, если ее нет в Map
+     * Метод putIfAbsent добавит пару, если ее нет в Map
      *
      * @param user
      */
@@ -33,18 +34,30 @@ public class Bank {
     }
 
     /**
+     * Поиск юзера по паспорту
+     *
+     * @param passport
+     * @return юзер
+     */
+    public User searchUser(String passport) {
+        User result = null;
+        for (Map.Entry<User, List<Account>> entry : spisok.entrySet()) {
+            if (passport.equals(entry.getKey().getPassport())) {
+                result = entry.getKey();
+            }
+        }
+        return result;
+    }
+
+    /**
      * Добавление акаунта по паспорту
      *
      * @param passport
      * @param account
      */
     public void addAccountToUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> entry : spisok.entrySet()) {
-            if (passport.equals(entry.getKey().getPassport())) {
-                if (!(entry.getValue().contains(account))) {
-                    entry.getValue().add(account);
-                }
-            }
+        if (spisok.get(searchUser(passport)) != null) {
+            spisok.get(searchUser(passport)).add(account);
         }
     }
 
@@ -55,11 +68,7 @@ public class Bank {
      * @param account
      */
     public void deleteAccountFromUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> entry : spisok.entrySet()) {
-            if (passport.equals(entry.getKey().getPassport())) {
-                entry.getValue().remove(account);
-            }
-        }
+        spisok.get(searchUser(passport)).remove(account);
     }
 
     /**
@@ -69,14 +78,7 @@ public class Bank {
      * @return list аков
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> accounts = new ArrayList<>();
-        for (Map.Entry<User, List<Account>> entry : spisok.entrySet()) {
-            if (passport.equals(entry.getKey().getPassport())) {
-                accounts = entry.getValue();
-                break;
-            }
-        }
-        return accounts;
+        return spisok.get(searchUser(passport));
     }
 
     /**
@@ -86,7 +88,7 @@ public class Bank {
      * @param requisites
      * @return нужный аккаунт
      */
-    public Account getAcc(List<Account> accounts, String requisites) {
+    private Account getAcc(List<Account> accounts, String requisites) {
         Account acc = null;
         for (Account value : accounts) {
             if (value.getRequisites().equals(requisites)) {
@@ -110,19 +112,19 @@ public class Bank {
      * @return успех операции
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
-        boolean result;
-        List<Account> srcacc = getUserAccounts(srcPassport);
-        Account srcaccount = getAcc(srcacc, srcRequisite);
-        if (srcaccount == null) {
-            result = false;
+        boolean result = false;
+        if (searchUser(srcPassport) != null && searchUser(destPassport) != null) {
+            List<Account> srcacc = getUserAccounts(srcPassport);
+            List<Account> dstacc = getUserAccounts(destPassport);
+            if (!(srcacc.isEmpty() || dstacc.isEmpty())) {
+                Account srcaccount = getAcc(srcacc, srcRequisite);
+                Account destaccount = getAcc(dstacc, dstRequisite);
+                if (srcaccount != null && destaccount != null && srcaccount.getValue() >= amount) {
+                    srcaccount.transfer(destaccount, amount);
+                    result = true;
+                }
+            }
         }
-        List<Account> dstacc = getUserAccounts(destPassport);
-        Account destaccount = getAcc(dstacc, dstRequisite);
-        if (destaccount == null) {
-            result = false;
-        }
-        srcaccount.transfer(destaccount, amount);
-        result = true;
         return result;
     }
 }

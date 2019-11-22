@@ -34,6 +34,14 @@ public class BankTest {
     }
 
     @Test
+    public void whenSearchUserByPassportThenHaveUser() {
+        Bank bank = new Bank();
+        User user1 = new User("Ivan", "571-17451");
+        bank.addUser(user1);
+        assertThat(bank.searchUser("571-17451"), is(user1));
+    }
+
+    @Test
     public void whenAddAccountToUserhThenHaveAccount() {
         Bank bank = new Bank();
         User user1 = new User("Ivan", "571-17451");
@@ -73,19 +81,6 @@ public class BankTest {
         expected.add(acount3);
         List<Account> result = bank.getUserAccounts("571-17452");
         assertThat(result, is(expected));
-    }
-
-    @Test
-    public void getAccRequisites() {
-        Bank bank = new Bank();
-        User user1 = new User("Ivan", "571-17452");
-        bank.addUser(user1);
-        Account acount1 = new Account(245.0, "12748-F");
-        Account acount2 = new Account(458.0, "48748-A");
-        List<Account> result = new ArrayList<>();
-        result.add(acount1);
-        result.add(acount2);
-        assertThat(bank.getAcc(result, "12748-F"), is(acount1));
     }
 
     @Test
