@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class StartUI {
 
@@ -14,10 +15,13 @@ public class StartUI {
         }
     }
 
-        private void showMenu(ArrayList<UserAction> actions) {
-            System.out.println("Menu.");
+    private void showMenu(ArrayList<UserAction> actions) {
+            Consumer<String> menu = a -> System.out.println(a);
+            menu.accept("Menu.");
+            //System.out.println("Menu.");
             for (UserAction value : actions) {
-                System.out.println(value.info());
+                menu.accept(value.info());
+                //System.out.println(value.info());
             }
         }
 
@@ -32,7 +36,7 @@ public class StartUI {
         actions.add(new DeleteAction(3, "Delete Item"));
         actions.add(new FindbyIdAction(4, "Find Item by ID"));
         actions.add(new FindByNameAction(5, "Find Items by name"));
-        actions.add(new FindByNameAction(6, "Exit"));
+        actions.add(new ExitAction(6, "Exit"));
         new StartUI().init(validate, tracker, actions);
     }
 }
