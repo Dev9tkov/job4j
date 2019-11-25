@@ -1,6 +1,7 @@
 package ru.job4j.split;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -18,5 +19,11 @@ public class School {
                 filter(predict).
                 collect(Collectors.toList());
         return result;
+    }
+
+    public Map<String, Student> collecttoMap(List<Student> students) {
+        return students.
+                stream().
+                collect(Collectors.toMap(p -> p.getSurname(), p -> p));
     }
 }

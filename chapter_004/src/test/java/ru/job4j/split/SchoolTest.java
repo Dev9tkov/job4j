@@ -76,4 +76,21 @@ public class SchoolTest {
         assertThat(result, is (expected));
     }
 
+    @Test
+    public void whenListStudentMapStudent() {
+        School school = new School();
+        Student st1 = new Student(50, "Ivanov");
+        Student st2 = new Student(60, "Sidorov");
+        Student st3 = new Student(34,"Petrov");
+        List<Student> student = new ArrayList<>();
+        student.add(st1);
+        student.add(st2);
+        student.add(st3);
+        Map<String, Student> result = school.collecttoMap(student);
+        Map<String, Student> expected = new HashMap<>();
+        expected.put("Ivanov", st1);
+        expected.put("Sidorov", st2);
+        expected.put("Petrov", st3);
+        assertThat(result, is (expected));
+    }
 }
