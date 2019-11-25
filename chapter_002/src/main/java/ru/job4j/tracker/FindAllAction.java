@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class FindAllAction extends BaseAction {
 
     public FindAllAction(int key, String name) {
@@ -7,9 +9,9 @@ public class FindAllAction extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         for (Item item : tracker.findAll()) {
-            System.out.println(String.format("%s %s", item.getId(), item.getName()));
+            output.accept(String.format("%s %s", item.getId(), item.getName()));
         }
         return true;
     }

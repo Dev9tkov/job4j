@@ -11,17 +11,15 @@ public class StartUI {
             this.showMenu(actions);
             int select = input.askInt("Select: ", actions.size());
             UserAction action = actions.get(select);
-            run = action.execute(input, tracker);
+            Consumer<String> output = System.out::println;
+            run = action.execute(input, tracker, output);
         }
     }
 
     private void showMenu(ArrayList<UserAction> actions) {
-            Consumer<String> menu = a -> System.out.println(a);
-            menu.accept("Menu.");
-            //System.out.println("Menu.");
+            System.out.println("Menu.");
             for (UserAction value : actions) {
-                menu.accept(value.info());
-                //System.out.println(value.info());
+                System.out.println(value.info());
             }
         }
 

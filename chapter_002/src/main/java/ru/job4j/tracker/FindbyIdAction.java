@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class FindbyIdAction extends BaseAction {
 
     public FindbyIdAction(int key, String name) {
@@ -7,14 +9,15 @@ public class FindbyIdAction extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
-        System.out.print("Enter Id: ");
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
+        output.accept("Enter Id: ");
         String id = input.askStr("");
         Item item = tracker.findById(id);
         if (item != null) {
-            System.out.println(item);
+            String description = String.format("%s %s", item.getId(), item.getName());
+            output.accept(description);
         } else {
-            System.out.println("This Id does not exist");
+            output.accept("This Id does not exist");
         }
         return true;
     }

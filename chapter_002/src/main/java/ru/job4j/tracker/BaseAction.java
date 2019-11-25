@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class BaseAction implements UserAction {
 
     private final int key;
@@ -17,11 +19,11 @@ public class BaseAction implements UserAction {
 
     @Override
     public String info() {
-        return String.format("%s : %s", this.key, this.name);
+        return String.format("%s. %s", this.key, this.name);
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         return false;
     }
 }
