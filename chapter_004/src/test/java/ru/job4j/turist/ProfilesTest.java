@@ -13,20 +13,22 @@ import static org.junit.Assert.assertThat;
  */
 public class ProfilesTest {
     @Test
-    public void liststream() {
+    public void uniqeSity() {
         Profiles profiles = new Profiles();
         Address adr1 = new Address("Moscow", "Mira", 7, 14);
         Address adr2 = new Address("Ekb", "Lenina", 5, 1);
         Address adr3 = new Address("Samara", "9 Maya", 5, 3);
         Address adr4 = new Address("Novgorod", "Zelenaya", 48, 8);
+        Address adr5 = new Address("Novgorod", "Zelenaya", 48, 8);
         List<Profile> prof = List.of(
                 new Profile(adr1),
                 new Profile(adr2),
                 new Profile(adr3),
-                new Profile(adr4)
-        );
+                new Profile(adr4),
+                new Profile(adr5)
+                );
         List<Address> result = profiles.collect(prof);
-        List<Address> expexted = List.of(adr1, adr2, adr3, adr4);
+        List<Address> expexted = List.of(adr2, adr1, adr4, adr3);
         assertThat(result, is(expexted));
     }
 }

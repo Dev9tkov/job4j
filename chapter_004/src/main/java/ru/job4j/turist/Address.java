@@ -1,5 +1,7 @@
 package ru.job4j.turist;
 
+import java.util.Objects;
+
 /**
  * To do
  *
@@ -18,5 +20,37 @@ public class Address {
         this.street = street;
         this.home = home;
         this.apartament = apartament;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getHome() {
+        return home;
+    }
+
+    public int getApartament() {
+        return apartament;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return home == address.home &&
+                apartament == address.apartament &&
+                city.equals(address.city) &&
+                street.equals(address.street);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, street, home, apartament);
     }
 }
