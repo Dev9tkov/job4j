@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -15,6 +17,7 @@ public class FindByNameActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
         System.setOut(new PrintStream(out));
+        Consumer<String> output = System.out::println;
         Tracker tracker = new Tracker();
         Item test1 = new Item("test1");
         Item test2 = new Item("test2");
@@ -26,7 +29,7 @@ public class FindByNameActionTest {
         tracker.add(test4);
         tracker.findByName("test1");
         FindByNameAction act = new FindByNameAction(5, "test1");
-        act.execute(new StubInput(new String[] {"test1", "test3"}), tracker);
+        act.execute(new StubInput(new String[] {"test1", "test3"}), tracker, output);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Enter key: ")
                 .add(test1.getId() + " " + test1.getName())
