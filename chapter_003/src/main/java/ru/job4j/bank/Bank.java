@@ -1,6 +1,7 @@
 package ru.job4j.bank;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * To do
@@ -41,13 +42,15 @@ public class Bank {
      */
     public User searchUser(String passport) {
         User result = null;
-        for (Map.Entry<User, List<Account>> entry : spisok.entrySet()) {
-            if (passport.equals(entry.getKey().getPassport())) {
-                result = entry.getKey();
-            }
-        }
+        Map.Entry<User, List<Account>> entry = spisok.entrySet()
+                .stream()
+                .filter(user -> passport.equals(user.getKey().getPassport()))
+                .findFirst()
+                .get();
+        result = entry.getKey();
         return result;
     }
+
 
     /**
      * Добавление акаунта по паспорту
@@ -56,9 +59,9 @@ public class Bank {
      * @param account
      */
     public void addAccountToUser(String passport, Account account) {
-        if (spisok.get(searchUser(passport)) != null) {
-            spisok.get(searchUser(passport)).add(account);
-        }
+        spisok.entrySet().stream()
+                .filter(user -> passport.equals(user.getKey().getPassport()))
+                .forEach(user -> user.getValue().add(account));
     }
 
     /**
@@ -68,8 +71,11 @@ public class Bank {
      * @param account
      */
     public void deleteAccountFromUser(String passport, Account account) {
-        spisok.get(searchUser(passport)).remove(account);
+        spisok.entrySet().stream()
+                .filter(user -> passport.equals(user.getKey().getPassport()))
+                .forEach(user -> user.getValue().remove(account));
     }
+
 
     /**
      * Возвращает список всех аккаунтов у пользователя
@@ -78,8 +84,15 @@ public class Bank {
      * @return list аков
      */
     public List<Account> getUserAccounts(String passport) {
-        return spisok.get(searchUser(passport));
+        List<Account> accounts = new ArrayList<>();
+        accounts = spisok.entrySet().stream()
+                .filter(user -> passport.equals(user.getKey().getPassport()))
+                .findFirst()
+                .get()
+                .getValue();
+        return !accounts.isEmpty() ? accounts : new ArrayList<>();
     }
+
 
     /**
      * Поиск акканута по реквизитам из списка аккаунтов.
@@ -90,11 +103,10 @@ public class Bank {
      */
     private Account getAcc(List<Account> accounts, String requisites) {
         Account acc = null;
-        for (Account value : accounts) {
-            if (value.getRequisites().equals(requisites)) {
-                acc = value;
-            }
-        }
+        acc = accounts.stream()
+                .filter(account -> account.getRequisites().equals(requisites))
+                .findFirst()
+                .orElse(null);
         return acc;
     }
 
