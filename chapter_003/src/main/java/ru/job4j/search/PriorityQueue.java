@@ -21,8 +21,8 @@ public class PriorityQueue {
         if (tasks.isEmpty()) {
             tasks.add(0, task);
         }
-        int element = 0;
-        for (Task volume : tasks) {
+        var element = 0;
+        for (var volume : tasks) {
             if (volume.getPriority() > task.getPriority()) {
                 element = tasks.indexOf(volume);
                 break;
