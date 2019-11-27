@@ -21,10 +21,11 @@ public class UserConvertTest {
         User test1 = new User(1, "Max", "Moscow");
         User test2 = new User(2, "Kirill", "Perm");
         User test3 = new User(3, "Alex", "Tver'");
-        List<User> list = new ArrayList<>();
-        list.add(test1);
-        list.add(test2);
-        list.add(test3);
+        List<User> list = List.of(
+                test1,
+                test2,
+                test3
+        );
         HashMap<Integer, User> convertmap = convert.process(list);
         assertThat(convertmap.get(3).getName(), is("Alex"));
     }

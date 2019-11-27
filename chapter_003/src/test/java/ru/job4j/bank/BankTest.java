@@ -75,10 +75,11 @@ public class BankTest {
         bank.addAccountToUser("571-17452", acount1);
         bank.addAccountToUser("571-17452", acount2);
         bank.addAccountToUser("571-17452", acount3);
-        List<Account> expected = new ArrayList<>();
-        expected.add(acount1);
-        expected.add(acount2);
-        expected.add(acount3);
+        List<Account> expected = List.of(
+                acount1,
+                acount2,
+                acount3
+        );
         List<Account> result = bank.getUserAccounts("571-17452");
         assertThat(result, is(expected));
     }
