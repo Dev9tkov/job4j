@@ -88,9 +88,9 @@ public class Bank {
         accounts = spisok.entrySet().stream()
                 .filter(user -> passport.equals(user.getKey().getPassport()))
                 .findFirst()
-                .get()
-                .getValue();
-        return !accounts.isEmpty() ? accounts : new ArrayList<>();
+                .map(Map.Entry::getValue)
+                .orElse(new ArrayList<>());
+        return accounts;
     }
 
 
