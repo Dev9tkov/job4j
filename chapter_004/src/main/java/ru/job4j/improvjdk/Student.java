@@ -11,17 +11,13 @@ import java.util.Objects;
  * @version 01
  * @since 27.11.2019
  */
-public class Student implements Comparator<Student> {
+public class Student implements Comparable<Student> {
     private String name;
     private int scope;
 
     public Student(String name, int scope) {
         this.name = name;
         this.scope = scope;
-    }
-
-    public Student() {
-
     }
 
     public String getName() {
@@ -33,12 +29,14 @@ public class Student implements Comparator<Student> {
     }
 
     @Override
-    public int compare(Student o1, Student o2) {
-        if(o1.getScope() > o2.getScope())
+    public int compareTo(Student o) {
+        if (this.scope > o.getScope()) {
             return -1;
-        else if(o1.getScope() < o2.getScope())
+        } else if (this.scope < o.getScope()) {
             return 1;
-        else return 0;
+        } else {
+            return 0;
+        }
     }
 
     @Override
@@ -62,4 +60,5 @@ public class Student implements Comparator<Student> {
                 ", scope=" + scope +
                 '}';
     }
+
 }

@@ -1,5 +1,6 @@
 package ru.job4j.improvjdk;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -16,9 +17,10 @@ import java.util.stream.Stream;
  */
 public class StudentSort {
     public List<Student> levelof(List<Student> students, int bound) {
-        List<Student> result = students.stream()
+        List<Student> result =
+                students.stream()
                 .flatMap(Stream::ofNullable)
-                .sorted(new Student())
+                .sorted()
                 .takeWhile(student -> student.getScope() > bound)
                 .collect(Collectors.toList());
         return result;
