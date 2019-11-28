@@ -60,7 +60,7 @@ public class Bank {
      */
     public void addAccountToUser(String passport, Account account) {
         spisok.entrySet().stream()
-                .filter(user -> passport.equals(user.getKey().getPassport()))
+                .filter(value -> value.getKey().equals(searchUser(passport)))
                 .forEach(user -> user.getValue().add(account));
     }
 
@@ -72,7 +72,7 @@ public class Bank {
      */
     public void deleteAccountFromUser(String passport, Account account) {
         spisok.entrySet().stream()
-                .filter(user -> passport.equals(user.getKey().getPassport()))
+                .filter(value -> value.getKey().equals(searchUser(passport)))
                 .forEach(user -> user.getValue().remove(account));
     }
 
@@ -86,7 +86,7 @@ public class Bank {
     public List<Account> getUserAccounts(String passport) {
         List<Account> accounts = new ArrayList<>();
         accounts = spisok.entrySet().stream()
-                .filter(user -> passport.equals(user.getKey().getPassport()))
+                .filter(value -> value.getKey().equals(searchUser(passport)))
                 .findFirst()
                 .map(Map.Entry::getValue)
                 .orElse(new ArrayList<>());
@@ -125,7 +125,6 @@ public class Bank {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        if (searchUser(srcPassport) != null && searchUser(destPassport) != null) {
             List<Account> srcacc = getUserAccounts(srcPassport);
             List<Account> dstacc = getUserAccounts(destPassport);
             if (!(srcacc.isEmpty() || dstacc.isEmpty())) {
@@ -136,7 +135,6 @@ public class Bank {
                     result = true;
                 }
             }
-        }
         return result;
     }
 }
