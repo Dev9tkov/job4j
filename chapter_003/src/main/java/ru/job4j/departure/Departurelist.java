@@ -54,12 +54,7 @@ public class Departurelist {
             @Override
             public int compare(String o1, String o2) {
                 int result = 0;
-                int length = 0;
-                if (o1.length() < o2.length()) {
-                    length = o1.length();
-                } else {
-                    length = o2.length();
-                }
+                int length = Math.min(o1.length(), o2.length());
                 for(int i = 0; i < length; i++) {
                     result = Character.compare(o2.charAt(i), o1.charAt(i));
                     if (result != 0) {
