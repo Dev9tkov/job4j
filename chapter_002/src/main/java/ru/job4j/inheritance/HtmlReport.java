@@ -8,6 +8,8 @@ package ru.job4j.inheritance;
  * @since 01.12.2019
  */
 public class HtmlReport extends TextReport {
+
+    @Override
     public String generate(String name, String body) {
         return "<h1>" + name + "</h1>" +
                 "<br/>" +
