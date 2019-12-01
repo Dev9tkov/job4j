@@ -40,13 +40,17 @@ public class Address {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Address address = (Address) o;
-        return home == address.home &&
-                apartament == address.apartament &&
-                city.equals(address.city) &&
-                street.equals(address.street);
+        return home == address.home
+                && apartament == address.apartament
+                && city.equals(address.city)
+                && street.equals(address.street);
     }
 
     @Override

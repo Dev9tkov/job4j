@@ -22,8 +22,8 @@ public class Departurelist {
      * @return полный лист
      */
     public List<String> fillGaps(List<String> orgs) {
-        Set <String> set = new TreeSet<>(orgs);
-        for(String value : orgs) {
+        Set<String> set = new TreeSet<>(orgs);
+        for (String value : orgs) {
             if (value.contains("//")) {
                 set.add(value.substring(0, value.lastIndexOf("//")));
             }
@@ -55,7 +55,7 @@ public class Departurelist {
             public int compare(String o1, String o2) {
                 int result = 0;
                 int length = Math.min(o1.length(), o2.length());
-                for(int i = 0; i < length; i++) {
+                for (int i = 0; i < length; i++) {
                     result = Character.compare(o2.charAt(i), o1.charAt(i));
                     if (result != 0) {
                         break;

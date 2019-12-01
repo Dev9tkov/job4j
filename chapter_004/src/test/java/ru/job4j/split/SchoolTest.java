@@ -32,7 +32,7 @@ public class SchoolTest {
         expected.add(st1);
         expected.add(st3);
         expected.add(st5);
-        assertThat(result, is (expected));
+        assertThat(result, is(expected));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class SchoolTest {
         List<Student> expected = new ArrayList<>();
         expected.add(st1);
         expected.add(st2);
-        assertThat(result, is (expected));
+        assertThat(result, is(expected));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class SchoolTest {
         List<Student> result = school.collect(student, student1 -> student1.getScore() >= 70 && student1.getScore() <= 100);
         List<Student> expected = new ArrayList<>();
         expected.add(st4);
-        assertThat(result, is (expected));
+        assertThat(result, is(expected));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class SchoolTest {
         School school = new School();
         Student st1 = new Student(50, "Ivanov");
         Student st2 = new Student(60, "Sidorov");
-        Student st3 = new Student(34,"Petrov");
+        Student st3 = new Student(34, "Petrov");
         List<Student> student = new ArrayList<>();
         student.add(st1);
         student.add(st2);
@@ -91,6 +91,6 @@ public class SchoolTest {
         expected.put("Ivanov", st1);
         expected.put("Sidorov", st2);
         expected.put("Petrov", st3);
-        assertThat(result, is (expected));
+        assertThat(result, is(expected));
     }
 }

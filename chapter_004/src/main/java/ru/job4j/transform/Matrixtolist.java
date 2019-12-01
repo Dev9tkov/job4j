@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  * @since 26.11.2019
  */
 public class Matrixtolist {
-    public List<Integer> matrix (Integer[][] integers) {
+    public List<Integer> matrix(Integer[][] integers) {
         return Stream.of(integers).flatMap(Stream::of).collect(Collectors.toList());
         }
 }
