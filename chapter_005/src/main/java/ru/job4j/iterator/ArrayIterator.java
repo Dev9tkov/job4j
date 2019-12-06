@@ -11,43 +11,25 @@ import java.util.Iterator;
  */
 public class ArrayIterator implements Iterator {
     private final int[][] values;
-    private int position = 0;
-    private int size;
+    private int row = 0;
+    private int col = 0;
 
     public ArrayIterator(final int[][] values) {
         this.values = values;
-        this.size = sizeArray(values);
-    }
-
-    private int sizeArray(final int[][] values) {
-        int count = 0;
-        for (int[] array : values) {
-            for (int data : array) {
-                count++;
-            }
-        }
-        return count;
     }
 
     @Override
     public boolean hasNext() {
-        return size > position;
+        return  row < values.length && col < values[row].length;
     }
 
     @Override
     public Object next() {
-        int count = 0;
-        int result = 0;
-        for(int[] array : values) {
-            for(int data : array) {
-                if (count == position) {
-                    position++;
-                    result = data;
-                    return result;
-                } else {
-                    count++;
-                }
-            }
+        int result = values[row][col];
+        col++;
+        if (col == values[row].length) {
+            col = 0;
+            row++;
         }
         return result;
     }
