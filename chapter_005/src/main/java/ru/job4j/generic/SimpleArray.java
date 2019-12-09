@@ -51,6 +51,7 @@ public class SimpleArray<T> implements Iterable<T> {
         index++;
     }
 
+
     /**
      * удаляет элемент по указанному индексу, все находящиеся справа элементы при этом необходимо сдвинуть
      * на единицу влево (в середине массива не должно быть пустых ячеек)
@@ -79,6 +80,10 @@ public class SimpleArray<T> implements Iterable<T> {
             throw new IndexOutOfBoundsException();
         }
         return (T) this.array[position];
+    }
+
+    public int size(){
+        return this.size;
     }
 
     @Override
