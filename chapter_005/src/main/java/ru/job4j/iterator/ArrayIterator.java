@@ -1,6 +1,7 @@
 package ru.job4j.iterator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Необходимо создать итератор для двухмерного массива
@@ -25,6 +26,9 @@ public class ArrayIterator implements Iterator {
 
     @Override
     public Object next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
         int result = values[row][col];
         col++;
         if (col == values[row].length) {
