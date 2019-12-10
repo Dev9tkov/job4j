@@ -59,14 +59,11 @@ public class SimpleArray<T> implements Iterable<T> {
      * @param position
      */
     public void remove(int position) {
+        int num = size - position - 1;
         if (position >= size || position < 0) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        for (int i = position; i < size; i++) {
-            if(i + 1 < size) {
-                array[i] = array[i + 1];
-            }
-        }
+        System.arraycopy(this.array, position + 1, this.array, position, num);
         array[size - 1] = null;
     }
 
