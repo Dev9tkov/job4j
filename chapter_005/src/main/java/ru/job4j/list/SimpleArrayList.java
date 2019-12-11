@@ -1,15 +1,21 @@
 package ru.job4j.list;
 
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+
 /**
- * To do
+ * Контейнер на базе связанного списка
  *
  * @author Ilya Devyatkov
  * @version 01
  * @since 10.12.2019
  */
-public class SimpleArrayList<E> {
+public class SimpleArrayList<E> implements Iterable<E> {
     private int size;
     private Node<E> first;
+    private int modCount = 0;
 
     /**
      * Метод вставляет в начало списка данные
@@ -20,6 +26,7 @@ public class SimpleArrayList<E> {
         newLink.next = this.first;
         this.first = newLink;
         this.size++;
+        modCount++;
     }
 
     /**
@@ -61,5 +68,34 @@ public class SimpleArrayList<E> {
         Node(E data) {
             this.data = data;
         }
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private int expectedModCount = modCount;
+            private int index;
+            private Node<E> current = SimpleArrayList.this.first;
+            private Node<E> lastReturned = null;
+
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public E next() {
+                if(expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                if(!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                lastReturned = current;
+                current = current.next;
+                index++;
+                return lastReturned.data;
+            }
+        };
     }
 }
