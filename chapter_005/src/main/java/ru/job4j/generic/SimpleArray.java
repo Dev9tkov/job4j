@@ -1,6 +1,5 @@
 package ru.job4j.generic;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
@@ -73,13 +72,13 @@ public class SimpleArray<T> implements Iterable<T> {
      * @param position
      */
     public T get(int position) {
-        if(position >= size || position < 0) {
+        if (position >= size || position < 0) {
             throw new IndexOutOfBoundsException();
         }
         return (T) this.array[position];
     }
 
-    public int size(){
+    public int size() {
         return this.size;
     }
 

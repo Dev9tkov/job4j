@@ -33,7 +33,7 @@ public class EvenIterator implements Iterator {
 
     @Override
     public Object next() {
-        if(!hasNext()) {
+        if (!hasNext()) {
             throw new NoSuchElementException();
         }
         return numbers[index++];

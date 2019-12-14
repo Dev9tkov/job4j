@@ -20,7 +20,7 @@ public class SimpleSet<E> implements Iterable<E> {
      * @param value
      */
     public void add(E value) {
-        if(!dublicate(value)) {
+        if (!dublicate(value)) {
             list.add(value);
         }
     }
@@ -33,7 +33,7 @@ public class SimpleSet<E> implements Iterable<E> {
     public boolean dublicate(E value) {
         boolean result = false;
         for (E model : list) {
-            if(model.equals(value)) {
+            if (model.equals(value)) {
                 result = true;
             }
         }

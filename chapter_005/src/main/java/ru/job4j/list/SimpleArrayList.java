@@ -84,10 +84,10 @@ public class SimpleArrayList<E> implements Iterable<E> {
 
             @Override
             public E next() {
-                if(expectedModCount != modCount) {
+                if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                if(!hasNext()) {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 lastReturned = current;

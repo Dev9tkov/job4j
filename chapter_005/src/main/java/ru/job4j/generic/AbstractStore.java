@@ -21,7 +21,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public boolean replace(String id, T model){
+    public boolean replace(String id, T model) {
         boolean result = false;
         int position = this.findIndexById(id);
         if (position != -1) {
@@ -55,7 +55,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
     private int findIndexById(String id) {
         int result = -1;
         for (int i = 0; i < array.size(); i++) {
-            if(this.array.get(i).getId().equals(id)) {
+            if (this.array.get(i).getId().equals(id)) {
                 result = i;
             }
         }
