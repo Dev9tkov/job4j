@@ -16,9 +16,10 @@ public class SimpleSetTest {
     public void f() {
         SimpleSet<Integer> set = new SimpleSet();
         set.add(1);
+        set.add(null);
         set.add(2);
         set.add(3);
-        set.add(1);
-        assertThat(set.size(), is(3));
+        set.add(2);
+        assertThat(set.size(), is(4));
     }
 }

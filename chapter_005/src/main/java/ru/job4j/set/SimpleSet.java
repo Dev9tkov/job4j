@@ -2,6 +2,7 @@ package ru.job4j.set;
 
 import ru.job4j.list.SimpleArrayList;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Реализовать коллекцию
@@ -33,8 +34,9 @@ public class SimpleSet<E> implements Iterable<E> {
     public boolean dublicate(E value) {
         boolean result = false;
         for (E model : list) {
-            if (model.equals(value)) {
+            if (model != null && model.equals(value) || model == null && value == null) {
                 result = true;
+                break;
             }
         }
         return result;
