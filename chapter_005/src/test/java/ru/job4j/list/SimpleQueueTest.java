@@ -19,6 +19,9 @@ public class SimpleQueueTest {
         simple.push(1);
         simple.push(2);
         simple.push(3);
-        assertThat(simple.poll(), is(1));
+        simple.poll();
+        simple.push(1);
+        assertThat(simple.poll(), is(2));
+        assertThat(simple.size(), is(2));
     }
 }

@@ -13,13 +13,20 @@ public class SimpleQueue<T> {
     SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-        while (in.list.getSize() > 0) {
-            out.push(in.poll());
+        if(out.size() == 0) {
+            int queuesize = in.size();
+            for (int i = 0; i < queuesize; i++) {
+                out.push(in.poll());
+            }
         }
         return out.poll();
     }
 
     public void push(T value) {
         in.push(value);
+    }
+
+    public int size() {
+        return in.size() + out.size();
     }
 }
