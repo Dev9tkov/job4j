@@ -3,7 +3,7 @@ package ru.job4j.map;
 import java.util.Calendar;
 
 /**
- * Создать модель User и три поля String name, int children, Calendar birthday
+ * To do
  *
  * @author Ilya Devyatkov
  * @version 01
