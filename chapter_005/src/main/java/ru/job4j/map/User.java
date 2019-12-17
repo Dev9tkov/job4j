@@ -31,4 +31,9 @@ public class User {
                 name.equals(user.name) &&
                 birthday.equals(user.birthday);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
 }
