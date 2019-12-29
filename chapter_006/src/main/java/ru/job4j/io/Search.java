@@ -21,15 +21,23 @@ public class Search {
         queue.offer(root);
         while (!queue.isEmpty()) {
             File child = queue.poll();
-            for (String volume : exts) {
-                if (child.getName().contains(volume)) {
-                    result.add(child);
-                }
+            if (searchFile(child, exts)) {
+                result.add(child);
             }
             if (child.isDirectory()) {
                 queue.addAll(Arrays.asList(child.listFiles()));
             }
         }
         return result;
+    }
+
+    public boolean searchFile(File file, List<String> exts) {
+        return exts.stream().anyMatch(f -> f.contains(exts(file)));
+    }
+
+    public String exts(File file) {
+        String fileName = file.getName();
+        String[] arr = fileName.split("\\.");
+        return arr[arr.length - 1];
     }
 }
