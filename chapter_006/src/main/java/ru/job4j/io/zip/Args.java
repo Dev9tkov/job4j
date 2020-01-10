@@ -47,7 +47,7 @@ public class Args {
         exclude.setArgs(Option.UNLIMITED_VALUES);
         exclude.setValueSeparator(' ');
         options.addOption(exclude);
-        options.addOption("d", "directory", true,"directory to archive");
+        options.addOption("d", "directory", true, "directory to archive");
         options.addOption("o", "output", true, "output archive");
 
         try {

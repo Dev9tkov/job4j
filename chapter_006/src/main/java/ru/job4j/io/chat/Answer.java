@@ -30,7 +30,7 @@ public class Answer {
      */
     public List<String> answers() {
         List<String> list = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(source))){
+        try (BufferedReader br = new BufferedReader(new FileReader(source))) {
             br.lines().forEach(list :: add);
         } catch (IOException ioe) {
             ioe.printStackTrace();

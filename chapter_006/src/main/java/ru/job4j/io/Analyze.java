@@ -38,8 +38,7 @@ public class Analyze {
 
     public void unavailable(String source, String target) {
         try (BufferedReader read = new BufferedReader(new FileReader(source));
-             PrintWriter out = new PrintWriter(new FileOutputStream(target)))
-        {
+             PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
             String line;
             ArrayList<String> temps = new ArrayList<>();
             while ((line = read.readLine()) != null) {

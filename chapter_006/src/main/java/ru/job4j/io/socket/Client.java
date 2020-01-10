@@ -55,7 +55,7 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        try (Socket socket = new Socket(InetAddress.getByName(ip), port)){
+        try (Socket socket = new Socket(InetAddress.getByName(ip), port)) {
             new Client(socket).startClient();
         } catch (IOException e) {
             e.printStackTrace();

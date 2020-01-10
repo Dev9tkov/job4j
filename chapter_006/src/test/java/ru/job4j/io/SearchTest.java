@@ -38,9 +38,9 @@ public class SearchTest {
         forth.createNewFile();
         fifth.createNewFile();
         List<File> result = search.searchFile(rootDir.getAbsolutePath(), exts);
-        assertThat(result.get(0).getName(), is ("firstfile.txt"));
-        assertThat(result.get(1).getName(), is ("secondfile.txt"));
-        assertThat(result.size(), is (4));
+        assertThat(result.get(0).getName(), is("firstfile.txt"));
+        assertThat(result.get(1).getName(), is("secondfile.txt"));
+        assertThat(result.size(), is(4));
         delfile(rootDir);
     }
 

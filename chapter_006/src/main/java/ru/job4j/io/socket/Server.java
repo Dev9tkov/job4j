@@ -44,7 +44,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        try (Socket socket = new ServerSocket(port).accept()){
+        try (Socket socket = new ServerSocket(port).accept()) {
             new Server(socket).startServer();
         } catch (IOException e) {
             e.printStackTrace();
