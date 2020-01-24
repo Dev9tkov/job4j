@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,14 +41,24 @@ public class SearchFile {
     }
 
     /**
+     * Обобщенный поиск файла
+     * @param predicate
+     * @return
+     * @throws IOException
+     */
+    public List<Path> search(Predicate<Path> predicate) throws IOException {
+        Stream<Path> files = Files.walk(Paths.get(args.getDirectory()));
+        return files.filter(predicate).collect(Collectors.toList());
+    }
+
+    /**
      * Поиск файла, если задано имя файла целиком
      * @param name имя файла
      * @return лист путей
      * @throws IOException
      */
     public List<Path> fullNameSearch(String name) throws IOException {
-        Stream<Path> files = Files.walk(Paths.get(args.getDirectory()));
-        return files.filter(f -> f.getFileName().toString().contains(name)).collect(Collectors.toList());
+        return search(path->path.toString().contains(name));
     }
 
     /**
@@ -59,11 +70,7 @@ public class SearchFile {
     public List<Path> maskSearch(String mask) throws IOException {
         String[] value = mask.split("\\.");
         String exp = value[1];
-        Stream<Path> files = Files.walk(Paths.get(args.getDirectory()));
-        return files.filter(f -> f.getFileName().toString().endsWith(exp))
-                .map(Path::toFile)
-                .map(File::toPath)
-                .collect(Collectors.toList());
+        return search(path -> path.toString().contains(exp));
     }
 
     /**
@@ -74,9 +81,7 @@ public class SearchFile {
      */
     public List<Path> regExSearch(String regEx) throws IOException {
         Pattern pattern = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
-        Stream<Path> files = Files.walk(Paths.get(args.getDirectory()));
-        return files.filter(f -> pattern.matcher(f.getFileName().toString()).find())
-                .collect(Collectors.toList());
+        return search(path -> pattern.matcher(path.getFileName().toString()).find());
     }
 
     /**
