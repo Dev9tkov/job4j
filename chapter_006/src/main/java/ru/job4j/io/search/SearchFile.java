@@ -58,7 +58,8 @@ public class SearchFile {
      * @throws IOException
      */
     public List<Path> fullNameSearch(String name) throws IOException {
-        return search(path->path.toString().contains(name));
+        Predicate<Path> pr = path -> path.toString().contains(name);
+        return search(pr);
     }
 
     /**
@@ -70,7 +71,8 @@ public class SearchFile {
     public List<Path> maskSearch(String mask) throws IOException {
         String[] value = mask.split("\\.");
         String exp = value[1];
-        return search(path -> path.toString().contains(exp));
+        Predicate<Path> pr = path -> path.toString().contains(exp);
+        return search(pr);
     }
 
     /**
@@ -81,7 +83,8 @@ public class SearchFile {
      */
     public List<Path> regExSearch(String regEx) throws IOException {
         Pattern pattern = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
-        return search(path -> pattern.matcher(path.getFileName().toString()).find());
+        Predicate<Path> pr = path -> pattern.matcher(path.getFileName().toString()).find();
+        return search(pr);
     }
 
     /**
