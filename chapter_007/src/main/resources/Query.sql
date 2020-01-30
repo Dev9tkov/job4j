@@ -24,25 +24,25 @@ insert into product (name, type_id, expired_date, price) VALUES
 	('Parmalat 1.0%', 2, '2020-03-30 09:08:01', 82.5);
 
 --1. Написать запрос получение всех продуктов с типом "Сыр"
-SELECT * FROM product as p WHERE p.type_id = 1;
+SELECT * FROM product as p WHERE p.name = 'Сыр';
 
 --2. Написать запрос получения всех продуктов, у кого в имени есть слово "мороженное"
 SELECT p.name FROM product as p WHERE p.name LIKE '%мороженное%';
 
 --3. Написать запрос, который выводит все продукты, срок годности которых заканчивается в следующем месяце.
-SELECT * FROM product as p WHERE p.expired_date BETWEEN '2020-02-01' and '2020-02-29';
+SELECT * FROM product as p WHERE EXTRACT(MONTH FROM p.expired_date) > EXTRACT(MONTH FROM now());
 
 --4. Написать запрос, который выводит самый дорогой продукт.
 SELECT * FROM product as p WHERE p.price = (SELECT max(p.price) FROM product as p);
 
 --5. Написать запрос, который выводит количество всех продуктов определенного типа.
-SELECT t.name, count(p.name) FROM product as p INNER JOIN type as t ON t.id = p.type_id GROUP BY t.name;
+SELECT t.name, COUNT(p.name) FROM product as p INNER JOIN type as t ON t.id = p.type_id GROUP BY t.name;
 
 --6. Написать запрос получение всех продуктов с типом "СЫР" и "МОЛОКО"
 SELECT p.name FROM product as p INNER JOIN type as t on p.type_id = t.id WHERE t.name = 'СЫР' and t.name = 'МОЛОКО';
 
 --7. Написать запрос, который выводит тип продуктов, которых осталось меньше 10 штук.
-SELECT t.name FROM product as p INNER JOIN type AS t on p.type_id = t.id GROUP BY t.name HAVING COUNT(t.id)<10;
+SELECT t.name FROM product as p INNER JOIN type AS t on p.type_id = t.id GROUP BY t.name HAVING COUNT(t.id) < 10;
 
 --8. Вывести все продукты и их тип.
 SELECT t.name, p.name FROM product as p INNER JOIN type AS t on p.type_id = t.id;
