@@ -6,9 +6,24 @@ public class Item {
 
     private String id;
     private String name;
+    private String description;
 
     public Item(String name) {
         this.name = name;
+    }
+
+    public Item(String id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getId() {
@@ -28,10 +43,30 @@ public class Item {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return Objects.equals(id, item.id)
+                && Objects.equals(name, item.name)
+                && Objects.equals(description, item.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description);
+    }
+
+    @Override
     public String toString() {
         return "Item{"
                 + "id='" + id + '\''
                 + ", name='" + name + '\''
+                + ", description='" + description + '\''
                 + '}';
     }
 }

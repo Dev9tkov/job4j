@@ -8,7 +8,7 @@ public class FindByNameAction extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, ITracker tracker, Consumer<String> output) {
         output.accept("Enter key: ");
         String key = input.askStr("");
         for (Item item : tracker.findByName(key)) {

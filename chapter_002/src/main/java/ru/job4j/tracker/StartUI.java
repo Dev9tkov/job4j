@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 public class StartUI {
 
-    public void init(Input input, Tracker tracker, ArrayList<UserAction> actions) {
+    public void init(Input input, ITracker tracker, ArrayList<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -26,7 +26,7 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Input validate = new ValidateInput(input);
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(0, "Create Item"));
         actions.add(new FindAllAction(1, "Show all Items"));

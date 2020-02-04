@@ -7,5 +7,5 @@ public interface UserAction {
 
     String info();
 
-    boolean execute(Input input, Tracker tracker, Consumer<String> output);
+    boolean execute(Input input, ITracker tracker, Consumer<String> output);
 }

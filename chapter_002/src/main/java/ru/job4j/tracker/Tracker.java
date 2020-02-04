@@ -3,7 +3,7 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Tracker {
+public class Tracker implements ITracker {
 
     /**
      * Итемы будем хранить в arraylist
@@ -18,12 +18,14 @@ public class Tracker {
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
 
+    @Override
     public Item add(Item item) {
         item.setId(this.generateId());
         this.items.add(item);
         return item;
     }
 
+    @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
         for (int i = 0; i < items.size(); i++) {
@@ -36,6 +38,7 @@ public class Tracker {
         return result;
     }
 
+    @Override
     public boolean delete(String id) {
         boolean result = false;
         for (Item value : items) {
@@ -48,10 +51,12 @@ public class Tracker {
         return result;
     }
 
+    @Override
     public ArrayList<Item> findAll() {
         return this.items;
     }
 
+    @Override
     public ArrayList<Item> findByName(String key) {
         ArrayList<Item> result = new ArrayList<>();
         for (Item value : items) {
@@ -62,6 +67,7 @@ public class Tracker {
         return result;
     }
 
+    @Override
     public Item findById(String id) {
         Item result = null;
         for (Item value : items) {

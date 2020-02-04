@@ -9,7 +9,7 @@ public class ReplaceAction extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, ITracker tracker, Consumer<String> output) {
         String id = input.askStr("Enter id:");
         String name = input.askStr("Enter a new name of item: ");
         Item item = new Item(name);

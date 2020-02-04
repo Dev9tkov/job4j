@@ -8,7 +8,7 @@ public class DeleteAction extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, ITracker tracker, Consumer<String> output) {
         output.accept("Enter Id: ");
         String id = input.askStr("");
         if (tracker.delete(id)) {

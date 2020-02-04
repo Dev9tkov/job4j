@@ -9,7 +9,7 @@ public class CreateAction extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, ITracker tracker, Consumer<String> output) {
         output.accept("Enter name: ");
         String name = input.askStr("");
         Item item = new Item(name);
