@@ -2,7 +2,6 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Random;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -14,17 +13,13 @@ public class TrackerSQLTest {
         assertThat(sql.init(), is(true));
     }
 
-    @Test
+        @Test
     public void whenAdd3ItemsThenFind3Items() {
         TrackerSQL sql = new TrackerSQL();
         sql.init();
-        Random rm = new Random();
-        String id1 = String.valueOf(rm.nextLong() + System.currentTimeMillis());
-        String id2 = String.valueOf(rm.nextLong() + System.currentTimeMillis());
-        String id3 = String.valueOf(rm.nextLong() + System.currentTimeMillis());
-        Item item1 = new Item(id1, "test1", "task1");
-        Item item2 = new Item(id2, "test2", "task2");
-        Item item3 = new Item(id3, "test3", "task3");
+        Item item1 = new Item("test1", "task1");
+        Item item2 = new Item("test2", "task2");
+        Item item3 = new Item("test3", "task3");
         sql.add(item1);
         sql.add(item2);
         sql.add(item3);
@@ -36,12 +31,20 @@ public class TrackerSQLTest {
     public void whenDeleteItemThenReturnsTrue() {
         TrackerSQL sql = new TrackerSQL();
         sql.init();
-        Random rm = new Random();
-        String id1 = String.valueOf(rm.nextLong() + System.currentTimeMillis());
-        Item item1 = new Item(id1, "test1", "task1");
-        String keyId = item1.getId();
+        Item item1 = new Item("test1", "task1");
         sql.add(item1);
-        boolean result = sql.delete(keyId);
+        boolean result = sql.delete(item1.getId());
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenReplaceItemThenFindThisItem() {
+        TrackerSQL sql = new TrackerSQL();
+        sql.init();
+        Item item1 = new Item("test", "task1");
+        Item item2 = new Item("replace", "task1");
+        sql.add(item1);
+        boolean result = sql.replace(item1.getId(), item2);
         assertThat(result, is(true));
     }
 
@@ -49,12 +52,9 @@ public class TrackerSQLTest {
     public void whenSearchByIdItemThenReturnsItemWithThisId() {
         TrackerSQL sql = new TrackerSQL();
         sql.init();
-        Random rm = new Random();
-        String id1 = String.valueOf(rm.nextLong() + System.currentTimeMillis());
-        Item item1 = new Item(id1, "test1", "task1");
+        Item item1 = new Item("test1", "task1");
         sql.add(item1);
-        String keyId = item1.getId();
-        Item result = sql.findById(keyId);
+        Item result = sql.findById(item1.getId());
         assertThat(result, is(item1));
     }
 }

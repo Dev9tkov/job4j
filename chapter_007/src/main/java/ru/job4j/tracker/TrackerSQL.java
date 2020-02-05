@@ -69,13 +69,18 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     @Override
     public Item add(Item item) {
-        String insertItem = "insert into item (item_id, item_name, item_description) values (?, ?, ?)";
+        String insertItem = "insert into item (item_name, item_description) values (?, ?)";
         try (PreparedStatement ps = this.connection.prepareStatement(insertItem, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, item.getId());
-            ps.setString(2, item.getName());
-            ps.setString(3, item.getDescription());
+            ps.setString(1, item.getName());
+            ps.setString(2, item.getDescription());
             ps.executeUpdate();
             LOG.info(ps.toString());
+            ResultSet keys = ps.getGeneratedKeys();
+            if (keys.next()) {
+                int item_id = keys.getInt("item_id");
+                item.setId(Integer.toString(item_id));
+            }
+
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -85,11 +90,12 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
-        String replace = "update item set name = ?, description = ? where item_id = ?";
+        String replace = "update item set item_name = ?, item_description = ? where item_id = ?";
         try (PreparedStatement ps = this.connection.prepareStatement(replace)) {
             ps.setString(1, item.getName());
             ps.setString(2, item.getDescription());
-            ps.setString(3, item.getId());
+            int key_id = Integer.parseInt(id);
+            ps.setInt(3, key_id);
             LOG.info(ps.toString());
             if (ps.executeUpdate() > 0) {
                 result = true;
@@ -105,7 +111,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         boolean result = false;
         String delete = "delete from item where item_id = ?";
         try (PreparedStatement ps = this.connection.prepareStatement(delete)) {
-            ps.setString(1, id);
+            int key_id = Integer.parseInt(id);
+            ps.setInt(1, key_id);
             LOG.info(ps.toString());
             if (ps.executeUpdate() > 0) {
                 result = true;
@@ -124,11 +131,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             LOG.info(ps.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String id, name, desc;
-                id = rs.getString("item_id");
+                String name, desc;
                 name = rs.getString("item_name");
                 desc = rs.getString("item_description");
-                Item item = new Item(id, name, desc);
+                Item item = new Item(name, desc);
                 result.add(item);
             }
         } catch (SQLException e) {
@@ -146,11 +152,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             LOG.info(ps.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String id, name, desc;
-                id = rs.getString("item_id");
+                String name, desc;
                 name = rs.getString("item_name");
                 desc = rs.getString("item_description");
-                Item item = new Item(id, name, desc);
+                Item item = new Item(name, desc);
                 result.add(item);
             }
         } catch (SQLException e) {
@@ -164,15 +169,15 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         Item item = null;
         String findById = "select item_id, item_name, item_description from item where item_id = ?";
         try (PreparedStatement ps = this.connection.prepareStatement(findById)) {
-            ps.setString(1, id);
+            int key_id = Integer.parseInt(id);
+            ps.setInt(1, key_id);
             LOG.info(ps.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String keyId, name, desc;
-                keyId = rs.getString("item_id");
+                String name, desc;
                 name = rs.getString("item_name");
                 desc = rs.getString("item_description");
-                item = new Item(keyId, name, desc);
+                item = new Item(name, desc);
                 }
             } catch (SQLException e) {
             LOG.error(e.getMessage(), e);

@@ -12,8 +12,7 @@ public class Item {
         this.name = name;
     }
 
-    public Item(String id, String name, String description) {
-        this.id = id;
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -51,14 +50,13 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return Objects.equals(id, item.id)
-                && Objects.equals(name, item.name)
+        return Objects.equals(name, item.name)
                 && Objects.equals(description, item.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description);
+        return Objects.hash(name, description);
     }
 
     @Override
