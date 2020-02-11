@@ -11,8 +11,6 @@
 
     <artifactId>chapter_002</artifactId>
 
-
-
         <build>
             <plugins>
                 <plugin>

@@ -13,7 +13,7 @@ public class TrackerSQLTest {
         assertThat(sql.init(), is(true));
     }
 
-        @Test
+    @Test
     public void whenAdd3ItemsThenFind3Items() {
         TrackerSQL sql = new TrackerSQL();
         sql.init();
