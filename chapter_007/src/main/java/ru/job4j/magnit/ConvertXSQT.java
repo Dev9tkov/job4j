@@ -16,7 +16,7 @@ public class ConvertXSQT {
 
     private static final Logger LOG = LogManager.getLogger(ConvertXSQT.class.getName());
 
-    public void convert (File source, File dest, File scheme) {
+    public void convert(File source, File dest, File scheme) {
         try {
             //Create transformer factory
             TransformerFactory factory = TransformerFactory.newInstance();

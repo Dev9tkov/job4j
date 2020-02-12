@@ -15,7 +15,7 @@ import java.util.Objects;
 public class MainMagnit {
     public static void main(String[] args) {
         String tempdir = System.getProperty("java.io.tmpdir");
-        String FN = System.getProperty("file.separator");
+        String fs = System.getProperty("file.separator");
 
         Config config = new Config();
         config.init();
@@ -24,12 +24,12 @@ public class MainMagnit {
         storeSQL.generate(100);
         List<Entry> values = storeSQL.load();
 
-        File source = new File(tempdir + FN + "source.xml");
+        File source = new File(tempdir + fs + "source.xml");
         StoreXML storeXML = new StoreXML(source);
         storeXML.save(values);
 
-        File dest = new File(tempdir + FN + "dest.xml");
-        File sheme = new File(tempdir + FN + "sheme.xslt");
+        File dest = new File(tempdir + fs + "dest.xml");
+        File sheme = new File(tempdir + fs + "sheme.xslt");
         Path copied = sheme.toPath();
         try {
             Files.copy(Objects.requireNonNull(MainMagnit.class.getClassLoader().getResourceAsStream("scheme.xslt")), copied, StandardCopyOption.REPLACE_EXISTING);

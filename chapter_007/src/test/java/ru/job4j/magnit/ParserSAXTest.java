@@ -20,8 +20,8 @@ public class ParserSAXTest {
     @Test
     public void whenParse2EntryShouldSumNine() throws IOException {
         String tempDir = System.getProperty("java.io.tmpdir");
-        String LN = System.getProperty("line.separator");
-        String xmlDoc = Joiner.on(LN).join(
+        String ln = System.getProperty("line.separator");
+        String xmlDoc = Joiner.on(ln).join(
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<entries>",
                 "　<entry field=\"4\"/>",
@@ -35,8 +35,8 @@ public class ParserSAXTest {
 
         parserSAX.pars(saxFile);
 
-        String actual = "Sum of fields = 9" + LN;
-        assertThat(actual,is (output.toString()));
+        String actual = "Sum of fields = 9" + ln;
+        assertThat(actual, is(output.toString()));
         saxFile.delete();
     }
 }

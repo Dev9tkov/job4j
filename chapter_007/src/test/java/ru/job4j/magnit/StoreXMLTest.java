@@ -19,8 +19,8 @@ public class StoreXMLTest {
     @Test
     public void whenSaveTwoEntryThenHaveXml() throws IOException {
         String tempDir = System.getProperty("java.io.tmpdir");
-        String FN = System.getProperty("file.separator");
-        File actual = new File(tempDir + FN + "actual.xml");
+        String fn = System.getProperty("file.separator");
+        File actual = new File(tempDir + fn + "actual.xml");
         StoreXML storeXML = new StoreXML(actual);
         storeXML.save(List.of(new Entry(1), new Entry(2)));
         String result = new String(Files.readAllBytes(Path.of(actual.getAbsolutePath())));
