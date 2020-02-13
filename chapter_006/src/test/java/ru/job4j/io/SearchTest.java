@@ -21,11 +21,12 @@ public class SearchTest {
     @Test
     public void whenSearchTxtAndPdfThen4Files() throws IOException {
         Search search = new Search();
+        String fn = System.getProperty("file.separator");
         List exts = Arrays.asList(".txt", ".pdf");
         String dir = System.getProperty("java.io.tmpdir");
-        File rootDir = new File(dir + "Main");
+        File rootDir = new File(dir + fn + "Main");
         rootDir.mkdir();
-        File subDir = new File(rootDir.getPath() + "/subDir");
+        File subDir = new File(rootDir.getPath() + fn + "subDir");
         subDir.mkdir();
         File first = new File(rootDir, "firstfile.txt");
         File second = new File(rootDir, "secondfile.txt");
@@ -38,8 +39,6 @@ public class SearchTest {
         forth.createNewFile();
         fifth.createNewFile();
         List<File> result = search.searchFile(rootDir.getAbsolutePath(), exts);
-        assertThat(result.get(0).getName(), is("firstfile.txt"));
-        assertThat(result.get(1).getName(), is("secondfile.txt"));
         assertThat(result.size(), is(4));
         delfile(rootDir);
     }

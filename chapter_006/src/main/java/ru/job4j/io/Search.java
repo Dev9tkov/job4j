@@ -16,7 +16,7 @@ import java.util.function.Predicate;
 public class Search {
     public List<File> files(String parent, Predicate<File> predicate) {
         File root = new File(parent);
-        List<File> result = new ArrayList<>();
+        List<File> result = new LinkedList<>();
         Queue<File> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {

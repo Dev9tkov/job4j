@@ -33,7 +33,7 @@ public class ConvertXSQTTest {
                 + "        <field>2</field>\n"
                 + "    </entry>\n"
                 + "</entries>\n";
-        File source = Files.write(Path.of(tempDir + "source.xml"), xmlData.getBytes(), StandardOpenOption.CREATE).toFile();
+        File source = Files.write(Path.of(tempDir + fn + "source.xml"), xmlData.getBytes(), StandardOpenOption.CREATE).toFile();
         File dest = new File(tempDir + fn + "dest.xml");
         File sheme = new File(tempDir + fn + "sheme.xslt");
         Path copied = sheme.toPath();

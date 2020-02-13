@@ -20,6 +20,7 @@ public class ParserSAXTest {
     @Test
     public void whenParse2EntryShouldSumNine() throws IOException {
         String tempDir = System.getProperty("java.io.tmpdir");
+        String fn = System.getProperty("file.separator");
         String ln = System.getProperty("line.separator");
         String xmlDoc = Joiner.on(ln).join(
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
@@ -27,7 +28,7 @@ public class ParserSAXTest {
                 "　<entry field=\"4\"/>",
                 "　<entry field=\"5\"/>",
                 "</entries>");
-        File saxFile = Files.write(Path.of(tempDir + "testxsrt.xml"), xmlDoc.getBytes(), StandardOpenOption.CREATE).toFile();
+        File saxFile = Files.write(Path.of(tempDir + fn + "testxsrt.xml"), xmlDoc.getBytes(), StandardOpenOption.CREATE).toFile();
         ParserSAX parserSAX = new ParserSAX();
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();

@@ -21,11 +21,12 @@ public class ZipTest {
     @Test
     public void whenArchiveFolderThenZipCreated() throws IOException {
         String dir = System.getProperty("java.io.tmpdir");
-        File project = new File(dir + "project");
+        String fn = System.getProperty("file.separator");
+        File project = new File(dir + fn + "project");
         project.mkdir();
-        File subDir = new File(project.getPath() + "/subDir");
+        File subDir = new File(project.getPath() + fn + "subDir");
         subDir.mkdir();
-        File subSubDir = new File(subDir.getPath() + "/subSubDir");
+        File subSubDir = new File(subDir.getPath() + fn + "subSubDir");
         subSubDir.mkdir();
         File first = new File(project, "firstfile.txt");
         File second = new File(project, "secondfile.djvu");
@@ -41,7 +42,7 @@ public class ZipTest {
         fifth.createNewFile();
         six.createNewFile();
         seven.createNewFile();
-        String pathZip = dir + File.separator + "testarchive.zip";
+        String pathZip = dir + fn + "testarchive.zip";
         String[] args = {
                 "-d",
                 project.getAbsolutePath(),
