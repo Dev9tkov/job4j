@@ -1,9 +1,6 @@
 package ru.job4j.map;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.ConcurrentModificationException;
+import java.util.*;
 
 
 /**
@@ -69,7 +66,15 @@ public class SimpleMap<K, V> implements Iterable<V> {
      */
     private int hash(K key) {
         int h;
-        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+        int rl;
+        if (key == null) {
+            rl = 0;
+        } else {
+            h = key.hashCode();
+            rl = h ^ (h >>> 16);
+        }
+        return rl;
+//        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 
     /**
@@ -88,8 +93,8 @@ public class SimpleMap<K, V> implements Iterable<V> {
      */
     private void resize(int newSize) {
         Node<K, V>[] newTable = (Node<K, V> []) new Node[newSize];
-        if(this.table != null) {
-            for(Node<K, V> volume : this.table) {
+        if (this.table != null) {
+            for (Node<K, V> volume : this.table) {
                 if (volume != null) {
                     int index = this.index(this.hash(volume.key), newSize);
                     newTable[index] = volume;
@@ -181,7 +186,7 @@ public class SimpleMap<K, V> implements Iterable<V> {
             @Override
             public boolean hasNext() {
                 for (int i = index; i < table.length; i++) {
-                    if(table[index] != null) {
+                    if (table[index] != null) {
                         index = i;
                         break;
                     }

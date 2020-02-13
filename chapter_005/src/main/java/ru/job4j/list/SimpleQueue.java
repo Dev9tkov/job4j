@@ -13,7 +13,7 @@ public class SimpleQueue<T> {
     SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-        if(out.size() == 0) {
+        if (out.size() == 0) {
             int queuesize = in.size();
             for (int i = 0; i < queuesize; i++) {
                 out.push(in.poll());

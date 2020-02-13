@@ -18,7 +18,7 @@ public class SimpleMapTest {
     public void whenInsertValueAndKeyThenGetByKayValue() {
         SimpleMap<Integer, String> simple = new SimpleMap<>();
         simple.insert(0, "abc");
-        assertThat(simple.get(0), is ("abc"));
+        assertThat(simple.get(0), is("abc"));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class SimpleMapTest {
         SimpleMap<Integer, String> simple = new SimpleMap<>();
         simple.insert(0, "abc");
         simple.insert(0, "cda");
-        assertThat(simple.get(0), is ("cda"));
+        assertThat(simple.get(0), is("cda"));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class SimpleMapTest {
         simple.insert(1, "cda");
         simple.insert(2, "fga");
         simple.delete(0);
-        assertThat(simple.getSize(), is (2));
+        assertThat(simple.getSize(), is(2));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -58,7 +58,7 @@ public class SimpleMapTest {
         simple.insert(1, "cda");
         simple.insert(2, "fga");
         Iterator<String> iterator = simple.iterator();
-        assertThat(iterator.hasNext(), is (true));
-        assertThat(iterator.hasNext(), is (true));
+        assertThat(iterator.hasNext(), is(true));
+        assertThat(iterator.hasNext(), is(true));
     }
 }
