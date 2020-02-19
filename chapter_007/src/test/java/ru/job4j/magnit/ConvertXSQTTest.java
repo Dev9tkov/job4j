@@ -3,9 +3,7 @@ package ru.job4j.magnit;
 import com.google.common.base.Joiner;
 import org.junit.Test;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Objects;
