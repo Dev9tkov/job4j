@@ -2,9 +2,11 @@
 [![codecov](https://codecov.io/gh/Dev9tkov/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/Dev9tkov/job4j)
 ## Dev9tkov/job4j 
 #### Наиболее интересные задачи:
+ * [Tracker. Программа для учета заявок.](https://github.com/Dev9tkov/job4j/tree/master/chapter_002/src/main/java/ru/job4j/tracker)
+
  * [Простая реализация HashMap.](https://github.com/Dev9tkov/job4j/commit/ed649faaa1c23d8d1503e0aca5037b8e4d7958d3)
  
- * [Простой консольный zip-архиватор по заданному расширению в указанной папке.](https://github.com/Dev9tkov/job4j/commit/9ce7760500157bbac890b5bf1dc12685a3aa6785)
+ * [Простой zip-архиватор по заданному расширению в указанной папке.](https://github.com/Dev9tkov/job4j/commit/9ce7760500157bbac890b5bf1dc12685a3aa6785)
  
  * [XML XSLT JDBC парсинг и конвертация.](https://github.com/Dev9tkov/job4j/tree/master/chapter_007/src/main/java/ru/job4j/magnit)
  
