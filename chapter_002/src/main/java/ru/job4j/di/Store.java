@@ -1,5 +1,6 @@
 package ru.job4j.di;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
  * @since 02.07.2020
  */
 @Component
+@Scope("prototype")
 public class Store {
     private List<String> data = new ArrayList<>();
 
