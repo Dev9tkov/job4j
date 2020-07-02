@@ -1,7 +1,6 @@
 package ru.job4j.di;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.job4j.tracker.ConsoleInput;
 
 /**
  * @author Ilya Devyatkov
